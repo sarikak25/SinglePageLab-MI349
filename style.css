@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/*
+   AI helped with: Bistro Menu Theme Palette, Responsive Pairing Grid & Search Controls
+   Prompts:
+   1. Color Palette & Typography: "Style style.css using my custom warm bistro palette 
+      (#EDF0DA Beige background, #F0DFAD Vanilla Custard badges, #AA4465 Berry Crush headings 
+      and primary buttons, and #8F5C38 Toffee Brown accents) paired with Cormorant Garamond 
+      and Plus Jakarta Sans fonts."
+   2. Layout & Controls: "Create a responsive two-column CSS Grid (.pairing-grid) for the 
+      entrée and drink cards, a full-width flex search bar (.search-form), and pill-shaped 
+      quick-pick ingredient buttons (.chip)."
+*/
+
+:root {
+    --bg-beige: #EDF0DA;
+    --bg-card: #FFFFFF;
+    --vanilla-custard: #F0DFAD;
+    --khaki-beige: #A89B8C;
+    --berry-crush: #AA4465;
+    --berry-dark: #88324E;
+    --toffee-brown: #8F5C38;
+    --text-espresso: #2D1E17;
+    --text-muted: #5C4D44;
+
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-beige);
+    color: var(--text-espresso);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    padding: 2.5rem 1.25rem;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+/* Header */
+.site-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 2.25rem auto;
+}
+
+.eyebrow {
+    display: inline-block;
+    background-color: var(--vanilla-custard);
+    color: var(--toffee-brown);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+}
+
+h1 {
+    font-family: var(--font-serif);
+    font-size: 3.25rem;
+    font-weight: 700;
+    color: var(--berry-crush);
+    line-height: 1.05;
+    margin-bottom: 0.65rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+}
+
+/* Controls Layout */
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 660px;
+    margin: 0 auto 1.25rem auto;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+    gap: 0.6rem;
+}
+
+input[type="text"] {
+    flex: 1;
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    border: 2px solid var(--khaki-beige);
+    border-radius: 10px;
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    background-color: var(--bg-card);
+    color: var(--text-espresso);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--berry-crush);
+    box-shadow: 0 0 0 3px rgba(170, 68, 101, 0.18);
+}
+
+.btn {
+    padding: 0.85rem 1.5rem;
+    border-radius: 10px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--berry-crush);
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: var(--berry-dark);
+}
+
+.btn-secondary {
+    background-color: var(--vanilla-custard);
+    color: var(--toffee-brown);
+    border: 1.5px solid var(--toffee-brown);
+    padding: 0.65rem 1.4rem;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background-color: var(--toffee-brown);
+    color: #FFFFFF;
+}
+
+/* Quick-Pick Ingredient Chips */
+.quick-picks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.quick-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-right: 0.2rem;
+}
+
+.chip {
+    background-color: var(--bg-card);
+    color: var(--toffee-brown);
+    border: 1px solid var(--khaki-beige);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.chip:hover {
+    background-color: var(--berry-crush);
+    color: #FFFFFF;
+    border-color: var(--berry-crush);
+}
+
+.status-message {
+    text-align: center;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--toffee-brown);
+    min-height: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Menu Grid & Cards */
+.pairing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 820px) {
+    .pairing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.menu-card {
+    background-color: var(--bg-card);
+    border: 1.5px solid var(--khaki-beige);
+    border-top: 6px solid var(--berry-crush);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 28px rgba(45, 30, 23, 0.08);
+}
+
+.menu-card:nth-child(2) {
+    border-top-color: var(--toffee-brown);
+}
+
+.course-header {
+    border-bottom: 1px solid var(--vanilla-custard);
+    padding-bottom: 0.55rem;
+    margin-bottom: 1.25rem;
+}
+
+.course-label {
+    display: inline-block;
+    background-color: var(--vanilla-custard);
+    color: var(--toffee-brown);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+}
+
+.dish-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--vanilla-custard);
+}
+
+.dish-title {
+    font-family: var(--font-serif);
+    font-size: 1.95rem;
+    color: var(--berry-crush);
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+}
+
+.dish-meta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--toffee-brown);
+    margin-bottom: 1.25rem;
+}
+
+.section-heading {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text-espresso);
+    margin-bottom: 0.6rem;
+}
+
+.ingredient-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem 1rem;
+    font-size: 0.88rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--vanilla-custard);
+}
+
+.ingredient-list li::before {
+    content: "• ";
+    color: var(--berry-crush);
+    font-weight: bold;
+}
+
+.instructions-text {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    white-space: pre-line;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--khaki-beige);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.site-footer a {
+    color: var(--berry-crush);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 540px) {
+    .search-form {
+        flex-direction: column;
+    }
+}

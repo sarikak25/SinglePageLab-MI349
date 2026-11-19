@@ -1,0 +1,88 @@
+<!--
+   AI helped with: Semantic Single Page Application Structure & Pairing Controls
+   Prompts:
+   1. Semantic Layout: "Create a semantic HTML5 structure for a Single Page Application called 
+      'The Tasting Table' that pairs an entrée from TheMealDB with a beverage from TheCocktailDB 
+      using accessible landmarks (<header>, <main>, <section>, <article>, <footer>) that pass 
+      W3C validation."
+   2. Interactive Controls: "Add a full-width ingredient search bar, clickable quick-pick 
+      ingredient chips (Chicken, Salmon, Beef, Lemon, Garlic), a 'Surprise Me' random pairing 
+      button, and an aria-live status banner."
+-->
+      
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tasting Table | Culinary &amp; Cocktail Pairings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <span class="eyebrow">Entr&eacute;e &amp; Pour Mashup</span>
+        <h1>The Tasting Table</h1>
+        <p class="subtitle">Pair a main dish with a complementary drink—search by ingredient or let the chef decide.</p>
+    </header>
+
+    <main class="container">
+        <!-- Interactive Controls -->
+        <section class="controls" aria-label="Pairing Controls">
+            <form id="search-form" class="search-form">
+                <label for="ingredient-input" class="visually-hidden">Main Ingredient</label>
+                <input 
+                    type="text" 
+                    id="ingredient-input" 
+                    placeholder="Type a main ingredient (e.g., Chicken, Salmon, Lemon)..." 
+                    autocomplete="off"
+                >
+                <button type="submit" class="btn btn-primary">Find Pairing</button>
+            </form>
+
+            <!-- Quick-Pick Ingredient Chips for Immediate Usability -->
+            <div class="quick-picks" aria-label="Popular Ingredients">
+                <span class="quick-label">Try:</span>
+                <button type="button" class="chip" data-ingredient="Chicken">Chicken</button>
+                <button type="button" class="chip" data-ingredient="Salmon">Salmon</button>
+                <button type="button" class="chip" data-ingredient="Beef">Beef</button>
+                <button type="button" class="chip" data-ingredient="Lemon">Lemon</button>
+                <button type="button" class="chip" data-ingredient="Garlic">Garlic</button>
+            </div>
+
+            <button type="button" id="random-btn" class="btn btn-secondary">✨ Surprise Me (Chef's Choice)</button>
+        </section>
+
+        <!-- Dynamic Status / Error Banner -->
+        <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+
+        <!-- Two-Column Menu Display -->
+        <section class="pairing-grid" aria-label="Curated Dinner and Drink Menu">
+            <!-- Meal Card (TheMealDB API) -->
+            <article class="menu-card" id="meal-card">
+                <div class="course-header">
+                    <span class="course-label">Course I &bull; The Entr&eacute;e</span>
+                </div>
+                <div id="meal-content" class="card-body">
+                    <p class="placeholder-text">Loading tonight's entr&eacute;e...</p>
+                </div>
+            </article>
+
+            <!-- Drink Card (TheCocktailDB API) -->
+            <article class="menu-card" id="drink-card">
+                <div class="course-header">
+                    <span class="course-label">Course II &bull; The Pour</span>
+                </div>
+                <div id="drink-content" class="card-body">
+                    <p class="placeholder-text">Loading tonight's beverage pairing...</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Powered by <a href="https://www.themealdb.com/" target="_blank" rel="noopener noreferrer">TheMealDB</a> &amp; <a href="https://www.thecocktaildb.com/" target="_blank" rel="noopener noreferrer">TheCocktailDB</a> Public APIs.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
